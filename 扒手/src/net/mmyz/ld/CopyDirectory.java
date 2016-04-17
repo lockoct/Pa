@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import org.apache.commons.io.FileUtils;
 
 public class CopyDirectory {
-	 //最终目标文件夹
+	//最终目标文件夹
 	public static void main(String[] args) {
 		String getDirName;
 		int j = 0;
 		ArrayList<File>aimDir = new ArrayList<>();
-		
+
 		//教室是D盘
-		File dir = new File("F:/");
+		File dir = new File("D:");
 		boolean is;
-		
+
 		File[] allDir = null;
-		
+
 		do {
 			//判断D盘是否存在
 			is = dir.exists();
@@ -28,33 +28,21 @@ public class CopyDirectory {
 				for (int i = 0; i < allDir.length; i++) {
 					getDirName = allDir[i].getName();
 					//检索关键字
-					if (getDirName.indexOf("高二") != -1){
-						if (getDirName.indexOf("DV") != -1){
-							if (getDirName.indexOf("2014") != -1){
-								if(allDir[i].isDirectory() == true){
-										aimDir.add(new File(allDir[i].getAbsolutePath()+"/优秀作品"));
-											if (aimDir.get(j).exists() == true) {
-												j++;
-												is = true;
-											}else {
-												aimDir.remove(j);
-												System.out.println("不存在优秀作品");
-											}
-								}else {
-									System.out.println("不是文件夹");
-//									is = false;
-								}
+					if (getDirName.indexOf("趣味物理实验") != -1){
+						if(allDir[i].isDirectory() == true){
+							aimDir.add(new File(allDir[i].getAbsolutePath()+"/第六次课冷知识"));
+							if (aimDir.get(j).exists() == true) {
+								j++;
+								is = true;
 							}else {
-								System.out.println("不存在2014");
-//								is = false;
+								aimDir.remove(j);
+								System.out.println("不存在第六次课冷知识");
 							}
 						}else {
-							System.out.println("不存在DV");
-//							is = false;
+							System.out.println("不是文件夹");
 						}
 					}else {
-						System.out.println("不存在高二");
-//						is = false;
+						System.out.println("不存在趣味物理实验");
 					}
 				}
 			}else{
@@ -63,19 +51,19 @@ public class CopyDirectory {
 		} while (is == false);
 		//输出文件夹
 		//教室是G:/高二《20》/done
-		File toDir = new File("C:/Users/Administrator/Desktop/done");
+		File toDir = new File("G:/高二《20》/done");
 		if (toDir.exists() == false) {
 			toDir.mkdir();
 		}
 		try {
 			//复制文件夹
 			for (int i = 0; i < aimDir.size(); i++) {
-					FileUtils.copyDirectory(aimDir.get(i), toDir);
+				FileUtils.copyDirectory(aimDir.get(i), toDir);
 
-				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 }
-	
+

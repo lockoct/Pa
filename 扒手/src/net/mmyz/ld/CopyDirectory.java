@@ -7,68 +7,68 @@ import java.util.ArrayList;
 import org.apache.commons.io.FileUtils;
 
 public class CopyDirectory {
-	 //×îÖÕÄ¿±êÎÄ¼ş¼Ğ
+	 //æœ€ç»ˆç›®æ ‡æ–‡ä»¶å¤¹
 	public static void main(String[] args) {
 		String getDirName;
 		int j = 0;
 		ArrayList<File>aimDir = new ArrayList<>();
 		
-		//½ÌÊÒÊÇDÅÌ
-		File dir = new File("F:/");
+		//æ•™å®¤æ˜¯Dç›˜
+		File dir = new File("D:/");
 		boolean is;
 		
 		File[] allDir = null;
 		
 		do {
-			//ÅĞ¶ÏDÅÌÊÇ·ñ´æÔÚ
+			//åˆ¤æ–­Dç›˜æ˜¯å¦å­˜åœ¨
 			is = dir.exists();
 			if (is == true) {
-				//´æ·ÅDÅÌÎÄ¼ş¼ĞÁĞ±í
+				//å­˜æ”¾Dç›˜æ–‡ä»¶å¤¹åˆ—è¡¨
 				allDir = dir.listFiles();
 				for (int i = 0; i < allDir.length; i++) {
 					getDirName = allDir[i].getName();
-					//¼ìË÷¹Ø¼ü×Ö
-					if (getDirName.indexOf("¸ß¶ş") != -1){
+					//æ£€ç´¢å…³é”®å­—
+					if (getDirName.indexOf("é«˜äºŒ") != -1){
 						if (getDirName.indexOf("DV") != -1){
 							if (getDirName.indexOf("2014") != -1){
 								if(allDir[i].isDirectory() == true){
-										aimDir.add(new File(allDir[i].getAbsolutePath()+"/ÓÅĞã×÷Æ·"));
+										aimDir.add(new File(allDir[i].getAbsolutePath()+"/ä¼˜ç§€ä½œå“"));
 											if (aimDir.get(j).exists() == true) {
 												j++;
 												is = true;
 											}else {
 												aimDir.remove(j);
-												System.out.println("²»´æÔÚÓÅĞã×÷Æ·");
+												System.out.println("ä¸å­˜åœ¨ä¼˜ç§€ä½œå“");
 											}
 								}else {
-									System.out.println("²»ÊÇÎÄ¼ş¼Ğ");
+									System.out.println("ä¸æ˜¯æ–‡ä»¶å¤¹");
 //									is = false;
 								}
 							}else {
-								System.out.println("²»´æÔÚ2014");
+								System.out.println("ä¸å­˜åœ¨2014");
 //								is = false;
 							}
 						}else {
-							System.out.println("²»´æÔÚDV");
+							System.out.println("ä¸å­˜åœ¨DV");
 //							is = false;
 						}
 					}else {
-						System.out.println("²»´æÔÚ¸ß¶ş");
+						System.out.println("ä¸å­˜åœ¨é«˜äºŒ");
 //						is = false;
 					}
 				}
 			}else{
-				System.out.println("²»´æÔÚÂ·¾¶");
+				System.out.println("ä¸å­˜åœ¨è·¯å¾„");
 			}
 		} while (is == false);
-		//Êä³öÎÄ¼ş¼Ğ
-		//½ÌÊÒÊÇG:/¸ß¶ş¡¶20¡·/done
-		File toDir = new File("C:/Users/Administrator/Desktop/done");
+		//è¾“å‡ºæ–‡ä»¶å¤¹
+		//æ•™å®¤æ˜¯G:/é«˜äºŒã€Š20ã€‹/done
+		File toDir = new File("G:/é«˜äºŒã€Š20ã€‹/done");
 		if (toDir.exists() == false) {
 			toDir.mkdir();
 		}
 		try {
-			//¸´ÖÆÎÄ¼ş¼Ğ
+			//å¤åˆ¶æ–‡ä»¶å¤¹
 			for (int i = 0; i < aimDir.size(); i++) {
 					FileUtils.copyDirectory(aimDir.get(i), toDir);
 
